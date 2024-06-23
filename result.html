@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="C:\Users\hp\OneDrive\Desktop\Digitalization of the Hospitality Process\app\static\style.css">
+    <title>Allocation Results</title>
+</head>
+<body>
+    <h1>Room Allocation Results</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <table border="0.2cm">
+        <tr>
+            <th>Group ID</th>
+            <th>Hostel Name</th>
+            <th>Room Number</th>
+            <th>Members Allocated</th>
+        </tr>
+        {% for allocation in allocation_data %}
+        <tr>
+            <td>{{ allocation['Group ID'] }}</td>
+            <td>{{ allocation['Hostel Name'] }}</td>
+            <td>{{ allocation['Room Number'] }}</td>
+            <td>{{ allocation['Members Allocated'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('upload_csv') }}">Go Back</a>
+</body>
+</html>
